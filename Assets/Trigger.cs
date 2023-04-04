@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class Trigger : MonoBehaviour
 {
+    public GameObject Door;
+
+    Animator m_Animator;
     // Start is called before the first frame update
     void Start()
     {
-
+        m_Animator = Door.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -15,8 +21,20 @@ public class Trigger : MonoBehaviour
     {
 
     }
-    void OnTriggerEnter(Collider collision)
+
+    void OnTriggerEnter(Collider DoorTrigger)
     {
-        Debug.Log("dont go through me pls");
+        if (DoorTrigger.gameObject.name == "Player")
+        {
+            if (m_Animator.GetBool("OPEN"))
+            {
+                m_Animator.SetBool("OPEN", false);
+            }
+            else
+            {
+                m_Animator.SetBool("OPEN", true);
+            }
+        }
+
     }
 }
