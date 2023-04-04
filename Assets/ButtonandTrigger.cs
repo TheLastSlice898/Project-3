@@ -36,4 +36,9 @@ public class ButtonandTrigger : MonoBehaviour
             IsPlayerTrigger = true;
         }
     }
+    void OnTriggerExit(Collider Trigger)
+    {
+        PannelAnimator.SetBool("Button Door", false);
+        IsPlayerTrigger = false;
+    }
 }
